@@ -270,12 +270,23 @@ open class SimplePDF {
             renderingXoffset =  right - aspectWidth
         }
         
-        let renderingRect = CGRect(x: renderingXoffset, y: currentOffset.y, width: aspectWidth, height: aspectHeight)
-        
-        // render image to current pdf context
-        image.draw(in: renderingRect)
-        
-        return renderingRect
+        if image.size.width == 1000
+         {
+           let renderingRect = CGRect(x: renderingXoffset, y: currentOffset.y, width: 120, height: 120)
+           image.draw(in: renderingRect)
+           return renderingRect
+         }
+       else {
+           let renderingRect = CGRect(x: renderingXoffset, y: currentOffset.y, width: aspectWidth / 3.5, height: aspectHeight / 3)
+           image.draw(in: renderingRect)
+           return renderingRect
+       }
+//        let renderingRect = CGRect(x: renderingXoffset, y: currentOffset.y, width: aspectWidth, height: aspectHeight)
+//
+//        // render image to current pdf context
+//        image.draw(in: renderingRect)
+//
+//        return renderingRect
     }
     
     fileprivate func drawLineSeparator(height: CGFloat, currentOffset: CGPoint) -> CGRect {
